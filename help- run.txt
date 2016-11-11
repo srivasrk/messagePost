@@ -1,0 +1,7 @@
+C:\Users\Rahul\Desktop\Udemy\MEAN\messenger> 
+
+npm start
+
+"C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe" --dbpath c:\mongodb\data
+
+npm run build
