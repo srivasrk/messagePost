@@ -18,7 +18,8 @@ export class MessageService{
         const token = localStorage.getItem('token')
             ? '?token='+localStorage.getItem('token')
             : '';
-        return this.http.post('https://srivasrk-messenger.herokuapp.com/message' + token, body, {headers: headers})//only sets the observable. does not send the request
+        // return this.http.post('https://srivasrk-messenger.herokuapp.com/message' + token, body, {headers: headers})//only sets the observable. does not send the request// return this.http.post('https://srivasrk-messenger.herokuapp.com/message' + token, body, {headers: headers})//only sets the observable. does not send the request
+        return this.http.post('https://localhost:3000/message' + token, body, {headers: headers})//only sets the observable. does not send the request
             .map((response: Response) => {
                 const result = response.json();
                 const message =  new Message(
@@ -38,7 +39,8 @@ export class MessageService{
     }
 
     getMessage(){
-        return this.http.get('https://srivasrk-messenger.herokuapp.com/message')
+        // return this.http.get('https://srivasrk-messenger.herokuapp.com/message')
+        return this.http.get('https://localhost:3000/message')
             .map((response: Response) => {
                 const messages = response.json().obj;//different fields in msgs in back-end & front-end
                 let transformedMessages: Message[] = [];
@@ -70,7 +72,8 @@ export class MessageService{
         const token = localStorage.getItem('token')
             ? '?token='+localStorage.getItem('token')
             : '';
-        return this.http.patch('https://srivasrk-messenger.herokuapp.com/message/' + message.messageId + token, body, {headers: headers})
+        // return this.http.patch('https://srivasrk-messenger.herokuapp.com/message/' + message.messageId + token, body, {headers: headers})
+        return this.http.patch('https://localhost:3000/message/' + message.messageId + token, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => { //another chained function
                 this.errorService.handleError(error.json());
@@ -82,7 +85,8 @@ export class MessageService{
         this.messages.splice(this.messages.indexOf(message), 1);const token = localStorage.getItem('token')
             ? '?token='+localStorage.getItem('token')
             : '';
-        return this.http.delete('https://srivasrk-messenger.herokuapp.com/message/' + message.messageId + token)
+        // return this.http.delete('https://srivasrk-messenger.herokuapp.com/message/' + message.messageId + token)
+        return this.http.delete('https://localhost:3000/message/' + message.messageId + token)
             .map((response: Response) => response.json())
             .catch((error: Response) => { //another chained function
                 this.errorService.handleError(error.json());
